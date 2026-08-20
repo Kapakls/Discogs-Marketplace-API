@@ -1,26 +1,30 @@
-from typing import ClassVar
-
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class User(models.Model):
-    display_name = models.CharField(max_length=200)
-    country = models.CharField(max_length=2)
-    spotify_id = models.CharField(max_length=200, unique=True)
-    profile_url = models.URLField()
-    profile_image = models.URLField()
+class User(AbstractUser):
+    spotify_id = models.CharField(max_length=200, unique=True, null=True, blank=True)
+    display_name = models.CharField(max_length=200, blank=True)
+    country = models.CharField(max_length=2, blank=True)
+    profile_url = models.URLField(blank=True)
+    profile_image = models.URLField(blank=True)
 
 
 class Album(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="albums")
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="albums",
+    )
     title = models.CharField(max_length=200)
     artist = models.CharField(max_length=200)
     release_date = models.DateField()
-    spotify_id = models.CharField(max_length=200, unique=True)
-    artwork = models.URLField()
+    spotify_id = models.CharField(
+        max_length=200,
+        unique=True,
+    )
+    artwork = models.URLField(max_length=500)
 
-    def __str__(self):
-        return f"{self.artist} - {self.title}"
 
 class DiscogsMarketplaceListing(models.Model):
     album = models.ForeignKey(
@@ -35,19 +39,3 @@ class DiscogsMarketplaceListing(models.Model):
     media_condition = models.CharField(max_length=200)
     sleeve_condition = models.CharField(max_length=200)
     seller_rating = models.DecimalField(max_digits=5, decimal_places=2)
-
-
-class Match(models.Model):
-    album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name="matches")
-    listing = models.ForeignKey(
-        DiscogsMarketplaceListing, on_delete=models.CASCADE, related_name="matches"
-    )
-    match_score = models.DecimalField(max_digits=5, decimal_places=2)
-
-    class Meta:
-        constraints: ClassVar = [
-            models.UniqueConstraint(
-                fields=["album", "listing"],
-                name="unique_album_listing_match"
-            )
-        ]

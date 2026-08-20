@@ -1,4 +1,9 @@
-Django
-psycopg[binary]
-python-dotenv
-requestss
+fastapi==0.116.1
+uvicorn[standard]==0.35.0
+cloudscraper==1.2.71
+beautifulsoup4==4.13.4
+lxml==6.0.0
+pycountry==24.6.1
+pydantic==2.11.7
+pytest==8.4.1
+httpx==0.28.1

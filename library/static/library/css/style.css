@@ -1,3 +1,7 @@
+/* =========================
+   GLOBAL
+   ========================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,12 +10,21 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #0d0d0d;
+    background: #121212;
     color: #f5f5f5;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
+
+main {
+    flex: 1;
+}
+
+
+/* =========================
+   NAVIGATION
+   ========================= */
 
 nav {
     height: 72px;
@@ -32,21 +45,50 @@ nav {
     color: #1db954;
 }
 
-nav a {
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-right a {
     color: #aaa;
     text-decoration: none;
-    margin-left: 30px;
     font-size: 14px;
     transition: color 0.2s;
 }
 
-nav a:hover {
+.nav-right a:hover {
     color: white;
 }
 
-main {
-    flex: 1;
+.username {
+    color: #f5f5f5;
+    font-size: 14px;
 }
+
+.profile-link {
+    display: flex;
+    align-items: center;
+}
+
+.profile-link img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #1db954;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.profile-link img:hover {
+    transform: scale(1.05);
+}
+
+
+/* =========================
+   HOME / HERO
+   ========================= */
 
 .hero {
     max-width: 1100px;
@@ -90,6 +132,11 @@ main {
     transform: translateY(-2px);
 }
 
+
+/* =========================
+   HOME / FEATURES
+   ========================= */
+
 .features {
     max-width: 1100px;
     margin: 0 auto;
@@ -124,6 +171,370 @@ main {
     font-size: 14px;
 }
 
+
+/* =========================
+   ALBUMS
+   ========================= */
+
+.albums-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 30px 100px;
+}
+
+.albums-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    gap: 30px;
+}
+
+.section-label {
+    color: #1db954;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+}
+
+.albums-header h1 {
+    font-size: clamp(42px, 6vw, 68px);
+    line-height: 1;
+    letter-spacing: -3px;
+    margin-bottom: 20px;
+}
+
+.albums-header h1 span {
+    color: #1db954;
+}
+
+.albums-description {
+    max-width: 600px;
+    color: #888;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.album-count {
+    color: #666;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.album-card {
+    background: #151515;
+    border: 1px solid #242424;
+    border-radius: 14px;
+    overflow: hidden;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.album-card:hover {
+    transform: translateY(-5px);
+    border-color: #333;
+}
+
+.album-cover {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #111;
+}
+
+.album-cover img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.album-card:hover .album-cover img {
+    transform: scale(1.04);
+}
+
+.album-info {
+    padding: 18px;
+}
+
+.album-info h2 {
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 7px;
+}
+
+.album-artist {
+    color: #aaa;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.album-meta {
+    color: #666;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+
+/* =========================
+   EMPTY ALBUM STATE
+   ========================= */
+
+.empty-albums {
+    text-align: center;
+    padding: 100px 20px;
+    border: 1px solid #242424;
+    border-radius: 14px;
+    background: #151515;
+}
+
+.empty-albums h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.empty-albums p {
+    color: #777;
+}
+
+
+/* =========================
+   MUSIC LOADING
+   ========================= */
+
+.music-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 30px;
+}
+
+.loading-content {
+    max-width: 650px;
+    text-align: center;
+}
+
+.loading-content h1 {
+    font-size: clamp(42px, 6vw, 68px);
+    line-height: 1;
+    letter-spacing: -3px;
+    margin-bottom: 25px;
+}
+
+.loading-content h1 span {
+    color: #1db954;
+}
+
+.loading-content p:not(.section-label) {
+    max-width: 550px;
+    margin: 0 auto 35px;
+    color: #888;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.loading-spinner {
+    width: 36px;
+    height: 36px;
+    margin: 0 auto 20px;
+    border: 3px solid #292929;
+    border-top-color: #1db954;
+    border-radius: 50%;
+    animation: loading-spin 0.8s linear infinite;
+}
+
+.loading-status {
+    color: #666;
+    font-size: 13px;
+}
+
+@keyframes loading-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================
+   DISCOGS MARKETPLACE
+   ========================= */
+
+.marketplace-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 30px 100px;
+}
+
+.marketplace-header {
+    margin-bottom: 60px;
+}
+
+.marketplace-header h1 {
+    font-size: clamp(42px, 6vw, 68px);
+    line-height: 1;
+    letter-spacing: -3px;
+    margin-bottom: 20px;
+}
+
+.marketplace-header h1 span {
+    color: #1db954;
+}
+
+.marketplace-description {
+    max-width: 600px;
+    color: #888;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.album-marketplace {
+    margin-bottom: 60px;
+}
+
+.album-heading {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.album-heading-cover {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+}
+
+.album-heading-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.album-heading h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.album-heading p {
+    color: #888;
+    font-size: 14px;
+}
+
+.listing-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.listing-card {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 30px;
+    background: #151515;
+    border: 1px solid #242424;
+    border-radius: 10px;
+    padding: 20px;
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.listing-card:hover {
+    border-color: #333;
+    transform: translateY(-2px);
+}
+
+.listing-main h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.listing-condition {
+    color: #777;
+    font-size: 13px;
+}
+
+.listing-seller {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #888;
+    font-size: 13px;
+    text-align: center;
+}
+
+.listing-price {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.listing-price strong {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.listing-price a {
+    padding: 9px 15px;
+    background: #1db954;
+    color: #000;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.listing-price a:hover {
+    background: #1ed760;
+}
+
+.no-listings {
+    padding: 25px;
+    background: #151515;
+    border: 1px solid #242424;
+    border-radius: 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+.empty-marketplace {
+    padding: 100px 20px;
+    text-align: center;
+    background: #151515;
+    border: 1px solid #242424;
+    border-radius: 14px;
+}
+
+.empty-marketplace h2 {
+    margin-bottom: 10px;
+}
+
+.empty-marketplace p {
+    color: #777;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
 footer {
     border-top: 1px solid #222;
     padding: 30px 7%;
@@ -132,7 +543,42 @@ footer {
     font-size: 13px;
 }
 
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1000px) {
+
+    .album-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .listing-card {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .listing-seller {
+        flex-direction: row;
+        text-align: left;
+        gap: 15px;
+    }
+
+    .listing-price {
+        justify-content: space-between;
+    }
+
+}
+
+
 @media (max-width: 700px) {
+
     .features {
         grid-template-columns: 1fr;
     }
@@ -141,11 +587,39 @@ footer {
         padding-top: 70px;
     }
 
+    .albums-page {
+        padding-top: 60px;
+    }
+
+    .albums-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .album-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
     nav {
         padding: 0 5%;
     }
 
-    nav a {
-        margin-left: 15px;
+    .nav-right {
+        gap: 15px;
     }
+
+    .marketplace-page {
+        padding-top: 60px;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .album-grid {
+        grid-template-columns: 1fr;
+    }
+
 }
