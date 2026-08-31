@@ -1,6 +1,6 @@
-# Discogs Marketplace Matching API
+# Discogs Marketplace API
 
-A FastAPI-based REST API that searches the Discogs Marketplace for album listings and identifies potential matches using title similarity.
+A FastAPI-based API that searches the Discogs Marketplace for album listings and identifies potential matches using title similarity.
 
 The API accepts an artist and album name, retrieves relevant Marketplace listings, parses their information, and calculates a similarity score to determine which listings are potential matches.
 
