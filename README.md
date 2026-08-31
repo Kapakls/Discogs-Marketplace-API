@@ -86,9 +86,9 @@ A response contains the requested album, threshold, number of matching listings,
 
 ## Matching Algorithm
 
-The API uses Jaccard similarity to compare the requested album title with each Discogs Marketplace listing title.
+The API as of now uses really simple Jaccard similarity to compare the requested album title with each Discogs Marketplace listing title.
 
-The titles are split into individual words and converted to lowercase. The similarity is calculated as:
+The titles are split into individual words  with the similarity itself being calculated as:
 
 ```text
 similarity = |intersection| / |union|
@@ -107,10 +107,8 @@ The API separates its responsibilities into different components:
 * `DiscogsParser` — parses Marketplace HTML into structured listing data.
 * `schemas` — defines the structured API request and response models.
 
-This separation keeps external communication, parsing, business logic, and API models independent from one another.
-
 ## Disclaimer
 
 This project is a created for personal use and development purposes.
 
-It uses Discogs Marketplace data through web scraping and relies on third-party Python libraries. Please refer to the [Discogs Terms of Service](https://support.discogs.com/hc/en-us/articles/360009334333-Terms-of-Service) before using this project.
+It uses Discogs Marketplace data through web scraping and relies on third-party Python libraries. Please refer to the [Discogs Terms of Service](https://support.discogs.com/hc/en-us/articles/360009334333-Terms-of-Service) before using this API.
