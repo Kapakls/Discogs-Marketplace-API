@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from discogs_marketplace_api.dependencies import marketplace_service
-from discogs_marketplace_api.schemas.marketplace import MarketplaceMatchResponse
+from dependencies import marketplace_service
+from schemas.marketplace import MarketplaceMatchResponse
 
 router = APIRouter()
 

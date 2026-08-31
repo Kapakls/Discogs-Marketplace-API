@@ -1,7 +1,7 @@
 import pycountry
 from bs4 import BeautifulSoup
 
-from discogs_marketplace_api.schemas.marketplace import MarketplaceListing
+from schemas.marketplace import MarketplaceListing
 
 
 class DiscogsParser:

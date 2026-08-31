@@ -1,10 +1,10 @@
-from discogs_marketplace_api.clients.discogs.client import (
+from clients.discogs.client import (
     DiscogsClient,
 )
-from discogs_marketplace_api.clients.discogs.parser import (
+from clients.discogs.parser import (
     DiscogsParser,
 )
-from discogs_marketplace_api.services.marketplace import (
+from services.marketplace import (
     MarketplaceService,
 )
 

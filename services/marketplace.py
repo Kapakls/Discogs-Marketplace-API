@@ -1,13 +1,12 @@
-from discogs_marketplace_api.clients.discogs.client import DiscogsClient
-from discogs_marketplace_api.clients.discogs.parser import DiscogsParser
-from discogs_marketplace_api.schemas.marketplace import (
+from clients.discogs.client import DiscogsClient
+from clients.discogs.parser import DiscogsParser
+from schemas.marketplace import (
     MarketplaceListing,
     MarketplaceMatchResponse,
 )
 
 
 class MarketplaceService:
-
     def __init__(
         self,
         client: DiscogsClient,
@@ -67,17 +66,9 @@ class MarketplaceService:
         listing: str,
     ) -> float:
 
-        album_words = {
-            word.lower()
-            for word in album.split()
-            if "-" not in word
-        }
+        album_words = {word.lower() for word in album.split() if "-" not in word}
 
-        listing_words = {
-            word.lower()
-            for word in listing.split()
-            if "-" not in word
-        }
+        listing_words = {word.lower() for word in listing.split() if "-" not in word}
 
         union = album_words | listing_words
 
