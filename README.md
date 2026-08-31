@@ -66,7 +66,7 @@ A response contains the requested album, threshold, number of matching listings,
 {
     "album": "The Dark Side of the Moon",
     "threshold": 0.1,
-    "total": 2,
+    "total": 1,
     "listings": [
         {
             "title": "Pink Floyd - The Dark Side Of The Moon",
