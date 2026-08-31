@@ -7,11 +7,9 @@ The API accepts an artist and album name, retrieves relevant Marketplace listing
 ## Features
 
 * Searches the Discogs Marketplace using artist and album information.
-* Parses Marketplace listing data into structured responses.
 * Calculates similarity between an album title and listing titles using Jaccard similarity.
 * Configurable similarity threshold for filtering results.
 * Returns structured JSON responses containing listing, seller, pricing, condition, and similarity information.
-* Automatic interactive API documentation through FastAPI.
 
 ## Technologies
 
