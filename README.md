@@ -9,9 +9,9 @@ The API accepts an artist and album name, retrieves relevant Marketplace listing
 * Searches the Discogs Marketplace using artist and album information.
 * Calculates similarity between an album title and listing titles using Jaccard similarity.
 * Configurable similarity threshold for filtering results.
-* Returns structured JSON responses containing listing, seller, pricing, condition, and similarity information.
+* Response containing multiple listings along with their seller, pricing, condition, and similarity information.
 
-## Technologies
+## Stack/Libraries
 
 * Python 3.x
 * FastAPI
@@ -50,7 +50,7 @@ http://127.0.0.1:8000/docs
 
 ## API Usage
 
-The main functionality accepts an artist, album, and optional similarity threshold.
+The main endpoint accepts an artist, album, and optional similarity threshold.
 
 For example:
 
@@ -60,7 +60,7 @@ GET /marketplace?artist=Pink%20Floyd&album=The%20Dark%20Side%20of%20the%20Moon&t
 
 The API searches the Discogs Marketplace for listings matching the provided artist and album, then filters the results based on the calculated similarity score.
 
-A response contains the requested album, threshold, number of matching listings, and the matching Marketplace listings:
+A response contains the requested album, threshold, number of matching listings, and an list of matching Marketplace listings:
 
 ```json
 {
