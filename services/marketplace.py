@@ -38,7 +38,8 @@ class MarketplaceService:
         for listing in listings:
             similarity = self.calculate_similarity(
                 album,
-                listing.title,
+                artist,
+                listing
             )
 
             if similarity >= threshold:
@@ -87,19 +88,28 @@ class MarketplaceService:
 
     @staticmethod
     def calculate_similarity(
+        artist: str,
         album: str,
         listing: str,
     ) -> float:
 
-        album_words = {word.lower() for word in album.split() if "-" not in word}
+        target_words = {
+            word.lower()
+            for word in f"{artist} {album}".split()
+            if "-" not in word
+        }
 
-        listing_words = {word.lower() for word in listing.split() if "-" not in word}
+        listing_words = {
+            word.lower()
+            for word in listing.split()
+            if "-" not in word
+        }
 
-        union = album_words | listing_words
+        union = target_words | listing_words
 
         if not union:
             return 0.0
 
-        intersection = album_words & listing_words
+        intersection = target_words & listing_words
 
         return len(intersection) / len(union)
