@@ -1,3 +1,6 @@
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+
 from clients.discogs.client import DiscogsClient
 from clients.discogs.parser import DiscogsParser
 from schemas.marketplace import (
@@ -14,8 +17,9 @@ class MarketplaceService:
     ):
         self.client = client
         self.parser = parser
+        self.executor = ThreadPoolExecutor(max_workers=5)
 
-    def find_matches(
+    def find_matches_for_album(
         self,
         artist: str,
         album: str,
@@ -59,6 +63,27 @@ class MarketplaceService:
             total=len(matches),
             listings=matches,
         )
+
+    async def find_matches_for_multiple_albums(
+        self,
+        albums: list[tuple[str, str]],
+        threshold: float = 0.1,
+    ) -> list[MarketplaceMatchResponse]:
+
+        loop = asyncio.get_running_loop()
+
+        tasks = [
+            loop.run_in_executor(
+                self.executor,
+                self.find_matches_for_album,
+                artist,
+                album,
+                threshold,
+            )
+            for artist, album in albums
+        ]
+
+        return await asyncio.gather(*tasks)
 
     @staticmethod
     def calculate_similarity(
